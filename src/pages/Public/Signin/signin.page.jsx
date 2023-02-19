@@ -1,15 +1,19 @@
 import React from "react";
+import SideImage from "../../../components/SideImage/sideImage";
+import Signin from "../../../components/Signin/signin";
 
 const SigninPage = () => {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
+      <div className="container-fluid h-100">
+        <div className="row h-100">
           <div className="col-0 d-none d-md-block col-md-6">
-            <h1>Div 1</h1>
+            <SideImage />
           </div>
           <div className="col-12 col-md-6">
-            <h1>Div 2</h1>
+            <div className="d-flex justify-content-center align-items-center h-100">
+              <Signin />
+            </div>
           </div>
         </div>
       </div>

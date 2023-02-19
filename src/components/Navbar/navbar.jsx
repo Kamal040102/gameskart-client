@@ -8,7 +8,6 @@ const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(() => false);
 
   React.useEffect(() => {
-    console.log(location);
     if (location.pathname === "/signin") {
       setOnSignIn(true);
     } else {
@@ -27,7 +26,7 @@ const Navbar = () => {
           <Link className="navbar-brand" to="/">
             Gameskart
           </Link>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -45,7 +44,10 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
-          </ul>
+          </ul> */}
+          <Link className="navbar-brand" to={"/test-components"}>
+            Components
+          </Link>
         </div>
         <div>
           <div className="d-flex align-items-center">
