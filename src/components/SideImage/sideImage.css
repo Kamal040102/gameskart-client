@@ -1,0 +1,9 @@
+.sideImage {
+    width: 100%;
+}
+
+.sideImage>img {
+    background-clip: border-box;
+    width: 100%;
+    background-size: cover;
+}

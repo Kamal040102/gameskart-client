@@ -1,0 +1,6 @@
+.toastContainer {
+    position: absolute;
+    right: 0;
+    height: max-content;
+    width: max-content;
+}
