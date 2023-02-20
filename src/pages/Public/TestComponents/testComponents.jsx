@@ -26,7 +26,16 @@ const TestComponents = () => {
       </div> */}
       <div className="border p-3 m-3 rounded rounded-5">
         <h3>Prodcut Card</h3>
-        <GameCard />
+        <div className="row g-3">
+          <GameCard />
+          <GameCard />
+          <GameCard />
+          <GameCard />
+          <GameCard />
+          <GameCard />
+          <GameCard />
+          <GameCard />
+        </div>
       </div>
     </>
   );
