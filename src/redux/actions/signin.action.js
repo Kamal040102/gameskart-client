@@ -14,6 +14,10 @@ export const signinFailed = (err) => ({
   payload: err,
 });
 
+export const signinReset = () => ({
+  type: "RESET_ALL"
+})
+
 export const signinApi = (body) => {
   return (dispatch) => {
     dispatch(signinInitialize());
@@ -25,11 +29,11 @@ export const signinApi = (body) => {
         },
       })
       .then((res) => {
-        dispatch(signinSuccess(res.data.message));
-        localStorage.setItem("token", res.data.message);
+        dispatch(signinSuccess(res.data.data.token));
+        localStorage.setItem("token", res.data.data.token);
       })
       .catch((err) => {
-        dispatch(signinFailed(err.message));
+        dispatch(signinFailed(err.response.data.message));
       });
   };
 };

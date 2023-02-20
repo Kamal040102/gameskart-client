@@ -1,36 +1,52 @@
 import React from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Toast = ({ className, message, show }) => {
-  return (
-    <div
-      className={`toast align-items-center border-0 mb-2
-        ${
-          className === "primary"
-            ? "text-bg-primary"
-            : className === "success"
-            ? "text-bg-success"
-            : className === "danger"
-            ? "text-bg-danger"
-            : null
-        }  
-        fade
-        ${show ? "show" : ""}
-    `}
-      role="alert"
-      aria-live="assertive"
-      aria-atomic="true"
-    >
-      <div className="d-flex">
-        <div className="toast-body">{message}</div>
-        <button
-          type="button"
-          className="btn-close btn-close-white me-2 m-auto"
-          data-bs-dismiss="toast"
-          aria-label="Close"
-        ></button>
-      </div>
-    </div>
-  );
+// const Toast = ({ theme, type, message }) => {
+//   const config = {
+//     position: "top-right",
+//     autoClose: 5000,
+//     hideProgressBar: false,
+//     closeOnClick: true,
+//     pauseOnHover: true,
+//     draggable: true,
+//     progress: undefined,
+//     theme: theme ? theme : "light",
+//   };
+
+//   return (
+//     <>
+//       {type === "success"
+//         ? toast.success(message, config)
+//         : type === "danger"
+//         ? toast.error(message, config)
+//         : type === "info"
+//         ? toast.info(message, config)
+//         : toast(message, config)}
+//     </>
+//   );
+// };
+
+// export default Toast;
+
+export const Toast = (type, message, theme) => {
+  const config = {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: theme ? theme : "light",
+  };
+  if (type === "success") {
+    return toast.success(message, config);
+  } else if (type === "danger") {
+    return toast.error(message, config);
+  } else if (type === "info") {
+    return toast.info(message, config);
+  } else {
+    return toast(message, config);
+  }
 };
-
-export default Toast;

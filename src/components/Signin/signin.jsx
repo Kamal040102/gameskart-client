@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signinActions } from "../../redux";
-import Toast from "../toast/toast";
+import { Toast } from "../toast/toast";
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -13,16 +13,17 @@ const Signin = () => {
   });
 
   React.useEffect(() => {
-    if (error) {
-    } else if (token) {
-      return;
+    if (error && loading === false) {
+      Toast("danger", error);
+      dispatch(signinActions.signinReset());
+    } else if (token && loading === false) {
+      Toast("success", "Sign in Success.");
+      dispatch(signinActions.signinReset());
     }
-  }, [error, token]);
+  }, [loading]);
 
   return (
     <>
-      <Toast className={"danger"} message={error} />
-      <Toast className={"success"} message={"Welcome :D"} />
       <div className="border rounded rounded-5 p-5">
         <div className="mb-3">
           <label htmlFor="exampleInputUsername1" className="form-label">

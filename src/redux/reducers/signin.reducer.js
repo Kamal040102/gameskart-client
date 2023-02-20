@@ -24,6 +24,8 @@ const signinReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             }
+        case "RESET_ALL":
+            return initialState;
         default:
             return state;
     }
