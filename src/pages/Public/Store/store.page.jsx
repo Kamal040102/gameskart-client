@@ -8,7 +8,7 @@ const StorePage = () => {
 
   React.useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/product")
+      .get(`${process.env.REACT_APP_SERVER_URI}/product`)
       .then((res) => {
         setProducts(res.data.data);
       })
