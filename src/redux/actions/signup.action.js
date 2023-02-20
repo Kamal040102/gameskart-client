@@ -14,6 +14,10 @@ export const signupFailed = (err) => ({
     payload: err
 })
 
+export const signupReset = () => ({
+    type: "RESET_ALL"
+})
+
 export const signupApi = (body) => {
     return (dispatch) => {
         dispatch(signupInitialize())

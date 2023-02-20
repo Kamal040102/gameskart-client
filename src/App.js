@@ -7,7 +7,7 @@ import SignupPage from './pages/Public/Signup/signup.page';
 import StorePage from './pages/Public/Store/store.page';
 import Navbar from "./components/Navbar/navbar"
 import TestComponents from './pages/Public/TestComponents/testComponents';
-import ToastContainer from './components/ToastContainer/toastContainer';
+import { ToastContainer } from 'react-toastify';
 import ProductPage from './pages/Public/Product/ProductPage/productPage';
 
 const App = () => {

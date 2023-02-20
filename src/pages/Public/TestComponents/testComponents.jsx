@@ -1,38 +1,29 @@
 import React from "react";
 import GameCard from "../../../components/GameCard/gameCard";
-import Toast from "../../../components/toast/toast";
 
 const TestComponents = () => {
-  const [showToast, setShowToast] = React.useState(false);
-
   return (
     <>
       <h1>This is test components page.</h1>
-      <div className="border p-3 m-3 rounded rounded-5">
+      {/* <div className="border p-3 m-3 rounded rounded-5">
         <h3>Toasts</h3>
         <button
-          className="btn btn-success mb-3"
+          className="btn btn-success"
           onClick={(e) => {
-            e.preventDefault();
             setShowToast(!showToast);
           }}
         >
-          {showToast ? "Hide" : "Show"} All Toasts
+          Show toasts
         </button>
-        <div className="d-flex justify-content-between">
-          <Toast
-            className={"primary"}
-            show={showToast}
-            message="Primary Toast"
-          />
-          <Toast className={"danger"} show={showToast} message="Danger Toast" />
-          <Toast
-            className={"success"}
-            show={showToast}
-            message="Success Toast"
-          />
-        </div>
-      </div>
+        {showToast ? (
+          <>
+            <Toast message={"Toasts are working."} type={"success"} />
+            <Toast message={"Toasts are working."} type={"danger"} />
+            <Toast message={"Toasts are working."} type={"info"} />
+            <Toast message={"Toasts are working."} />
+          </>
+        ) : null}
+      </div> */}
       <div className="border p-3 m-3 rounded rounded-5">
         <h3>Prodcut Card</h3>
         <GameCard />
