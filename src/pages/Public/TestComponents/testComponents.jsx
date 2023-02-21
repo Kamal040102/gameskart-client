@@ -1,5 +1,6 @@
 import React from "react";
 import GameCard from "../../../components/GameCard/gameCard";
+import Table from "../../../components/Table/Table";
 
 const TestComponents = () => {
   return (
@@ -29,12 +30,18 @@ const TestComponents = () => {
         <div className="row g-3">
           <GameCard />
           <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
+        </div>
+      </div>
+      <div className="border p-3 m-3 rounded rounded-5">
+        <h3>Test-Table</h3>
+        <div className="row g-3">
+          <Table
+            tableHead={["Name", "Email"]}
+            tableData={[
+              { name: "Kamal", email: "kamal@gmail.com" },
+              { name: "Sharma", email: "sharma@gmail.com" },
+            ]}
+          />
         </div>
       </div>
     </>

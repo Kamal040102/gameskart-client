@@ -11,6 +11,7 @@ const StorePage = () => {
       .get(`${process.env.REACT_APP_SERVER_URI}/product`)
       .then((res) => {
         setProducts(res.data.data);
+        Toast("success", "All contents loaded.");
       })
       .then((err) => {
         Toast("danger", err.response.data.message);
@@ -18,7 +19,7 @@ const StorePage = () => {
   }, []);
   return (
     <>
-      <div className="container">
+      <div className="container p-5">
         <div className="row">
           {products?.map((product, key) => {
             return (
