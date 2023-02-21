@@ -1,7 +1,8 @@
 import React from 'react';
 import "./App.css"
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import DashboardAdminPage from './pages/Admin/dashboard.admin.page';
+import DashboardAdminProducts from "./pages/Admin/dashboard.admin.products"
 import SigninPage from './pages/Public/Signin/signin.page';
 import SignupPage from './pages/Public/Signup/signup.page';
 import StorePage from './pages/Public/Store/store.page';
@@ -9,6 +10,25 @@ import Navbar from "./components/Navbar/navbar"
 import TestComponents from './pages/Public/TestComponents/testComponents';
 import { ToastContainer } from 'react-toastify';
 import ProductPage from './pages/Public/Product/ProductPage/productPage';
+import { Toast } from './components/toast/toast';
+
+const AdminRoute = ({ token, role }) => {
+  if (!token && role !== "admin") {
+    Toast("info", "You aren't authorized to access this page.")
+    return <Navigate to={"/"} replace />
+  }
+
+  return <Outlet />
+}
+
+const PrivateRoute = ({ token, role }) => {
+  if (!token && role !== "user") {
+    Toast("info", "You aren't authorized to access this page.")
+    return <Navigate to={"/"} replace />
+  }
+
+  return <Outlet />
+}
 
 const App = () => {
   return (
@@ -19,7 +39,10 @@ const App = () => {
         <Route path='/' exact element={<StorePage />} />
         <Route path='/signin' element={<SigninPage />} />
         <Route path='/signup' element={<SignupPage />} />
-        <Route path='/admin/dashboard' element={<DashboardAdminPage />} />
+        <Route element={<AdminRoute role={"admin"} />}>
+          <Route path='/admin/dashboard' element={<DashboardAdminPage />} />
+          <Route path="/admin/products" element={<DashboardAdminProducts />} />
+        </Route>
         <Route path='/test-components' element={<TestComponents />} />
         <Route path='/product/:id' element={<ProductPage />} />
       </Routes>
