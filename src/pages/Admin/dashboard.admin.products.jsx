@@ -15,7 +15,9 @@ const DashboardAdminProducts = () => {
   return (
     <div className="container">
       <div>
-        <Table tableHead={Object.keys(data[0])} tableData={data} />
+        {data ? (
+          <Table tableHead={Object.keys(data[0])} tableData={data} />
+        ) : null}
       </div>
     </div>
   );
