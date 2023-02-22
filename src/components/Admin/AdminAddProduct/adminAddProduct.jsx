@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../../../redux";
 import Form from "../../Form/form";
 import { Toast } from "../../toast/toast";
+import { useNavigate } from "react-router-dom";
 
 const AdminAddProduct = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error, data } = useSelector(
     (state) => state.productsReducer
@@ -30,6 +32,7 @@ const AdminAddProduct = () => {
   const onClick = (e, data) => {
     e.preventDefault();
     dispatch(productActions.addNewProduct(data));
+    dispatch(productActions.getAllProducts());
   };
 
   return (

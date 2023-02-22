@@ -1,8 +1,6 @@
 import React from "react";
 
 const Form = ({ data, onClick, buttonLabel }) => {
-  const [body, setBody] = React.useState(null);
-
   let obj = {};
 
   return (

@@ -32,7 +32,7 @@ export const addNewProduct = (body) => {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": localStorage.getItem("token")
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
         }).then((res) => {
             dispatch(productsSuccess(res.data.message))
