@@ -2,26 +2,24 @@ import axios from "axios";
 import React from "react";
 import GameCard from "../../../components/GameCard/gameCard";
 import { Toast } from "../../../components/toast/toast";
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "../../../redux/index";
 
 const StorePage = () => {
-  const [products, setProducts] = React.useState(null);
+  const dispatch = useDispatch();
+  const { loading, data, error } = useSelector(
+    (state) => state.productsReducer
+  );
 
   React.useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URI}/product`)
-      .then((res) => {
-        setProducts(res.data.data);
-        Toast("success", "All contents loaded.");
-      })
-      .then((err) => {
-        Toast("danger", err.response.data.message);
-      });
+    dispatch(productActions.getAllProducts());
   }, []);
+
   return (
     <>
       <div className="container p-5">
         <div className="row">
-          {products?.map((product, key) => {
+          {data?.map((product, key) => {
             return (
               <GameCard
                 key={key}
