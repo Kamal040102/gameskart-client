@@ -1,8 +1,15 @@
 import React from "react";
 import GameCard from "../../../components/GameCard/gameCard";
 import Table from "../../../components/Table/Table";
+import Form from "../../../components/Form/form";
 
 const TestComponents = () => {
+  const data = [
+    { label: "name", type: "text" },
+    { label: "email", type: "email" },
+    { label: "password", type: "password" },
+    { label: "confirmpassword", type: "text" },
+  ];
   return (
     <>
       <h1>This is test components page.</h1>
@@ -43,6 +50,10 @@ const TestComponents = () => {
             ]}
           />
         </div>
+      </div>
+      <div className="border p-3 m-3 rounded rounded-5">
+        <h3>Form Dynamic</h3>
+        <Form data={data} buttonLabel={"Submit"} />
       </div>
     </>
   );
