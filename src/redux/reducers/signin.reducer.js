@@ -15,8 +15,14 @@ const signinReducer = (state = initialState, action) => {
         case "SIGNIN_SUCCESS":
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 token: action.payload
+            }
+        case "SIGNIN_CHECK_AUTH":
+            return {
+                ...state,
+                loading: false,
+                data: action.payload
             }
         case "SIGNIN_FAILED":
             return {

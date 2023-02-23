@@ -1,11 +1,16 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import DarkModeToggle from "react-dark-mode-toggle";
+import { useDispatch, useSelector } from "react-redux";
+import { signinActions } from "../../redux";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const [onSignIn, setOnSignIn] = React.useState(false);
   const [isDarkMode, setIsDarkMode] = React.useState(() => false);
+  const { data } = useSelector((state) => state.signinReducer);
 
   React.useEffect(() => {
     if (location.pathname === "/signin") {
@@ -13,7 +18,26 @@ const Navbar = () => {
     } else {
       setOnSignIn(false);
     }
-  }, [location]);
+  }, [location, data]);
+
+  // onClick={(e)=>{
+  //                 e.preventDefault();
+  //                 onSignIn ? navigate("/signup") :
+  //                 data?._id ? (localStorage.removeItem("token") navigate("/signin")) : navigate("/signin")
+  //               }}
+
+  const onClick = (e) => {
+    e.preventDefault();
+    if (onSignIn) {
+      navigate("/signup");
+    } else if (data?._id) {
+      dispatch(signinActions.signinReset());
+      localStorage.removeItem("token");
+      navigate("/signin");
+    } else {
+      navigate("/signin");
+    }
+  };
 
   return (
     <nav
@@ -59,12 +83,12 @@ const Navbar = () => {
               />
             </div>
             <div className="ms-3">
-              <Link
+              <button
                 className="btn btn-outline-success w-100"
-                to={onSignIn ? "/signup" : "/signin"}
+                onClick={onClick}
               >
-                {onSignIn ? "Sign up" : "Sign in"}
-              </Link>
+                {onSignIn ? "Sign up" : data?._id ? "Log out" : "Sign in"}
+              </button>
             </div>
           </div>
         </div>

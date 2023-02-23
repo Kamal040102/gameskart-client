@@ -9,6 +9,11 @@ export const signinSuccess = (token) => ({
   payload: token,
 });
 
+export const signinCheckAuth = (data) => ({
+  type: "SIGNIN_CHECK_AUTH",
+  payload: data
+})
+
 export const signinFailed = (err) => ({
   type: "SIGNIN_FAILED",
   payload: err,
@@ -37,3 +42,20 @@ export const signinApi = (body) => {
       });
   };
 };
+
+export const checkAuth = () => {
+  return (dispatch) => {
+    dispatch(signinInitialize())
+    axios.get(`${process.env.REACT_APP_SERVER_URI}/auth`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then((res) => {
+      dispatch(signinCheckAuth(res.data.data.userExists))
+    }).catch((err) => {
+      dispatch(signinFailed(err.response.data.message));
+    })
+  }
+}

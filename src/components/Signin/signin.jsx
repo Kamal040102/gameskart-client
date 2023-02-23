@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signinActions } from "../../redux";
 import { Toast } from "../toast/toast";
 
 const Signin = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, error, token } = useSelector((state) => state.signinReducer);
+  const { loading, error, token, data } = useSelector(
+    (state) => state.signinReducer
+  );
   const [body, setBody] = React.useState({
     username: "",
     password: "",
@@ -16,11 +19,23 @@ const Signin = () => {
     if (error && loading === false) {
       Toast("danger", error);
       dispatch(signinActions.signinReset());
-    } else if (token && loading === false) {
+    } else if (token && loading === true) {
+      dispatch(signinActions.checkAuth());
+      console.log("Signin ho gaya");
       Toast("success", "Sign in Success.");
-      dispatch(signinActions.signinReset());
     }
-  }, [loading]);
+  }, [token, loading]);
+
+  React.useEffect(() => {
+    if (data && loading === false) {
+      console.log("Data aa gaya ", data);
+      if (data.user_role === "admin") {
+        navigate("/admin/dashboard");
+      } else if (data.user_role === "user") {
+        navigate("/");
+      }
+    }
+  }, [data, loading]);
 
   return (
     <>
