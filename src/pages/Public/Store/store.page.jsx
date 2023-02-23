@@ -4,6 +4,7 @@ import GameCard from "../../../components/GameCard/gameCard";
 import { Toast } from "../../../components/toast/toast";
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../../../redux/index";
+import Loader from "../../../components/Loader/loader";
 
 const StorePage = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const StorePage = () => {
 
   return (
     <>
+      <Loader loading={loading} />
       <div className="container p-5">
         <div className="row">
           {data?.map((product, key) => {

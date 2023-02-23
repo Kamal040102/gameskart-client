@@ -5,10 +5,11 @@ import { productActions } from "../../redux";
 import Table from "../../components/Table/Table";
 import AdminAddProduct from "../../components/Admin/AdminAddProduct/adminAddProduct";
 import Accordion from "../../components/Accordion/accordion";
+import Loader from "../../components/Loader/loader";
 
 const DashboardAdminProducts = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.productsReducer);
+  const { data, loading } = useSelector((state) => state.productsReducer);
 
   React.useEffect(() => {
     dispatch(productActions.getAllProducts());
@@ -16,6 +17,7 @@ const DashboardAdminProducts = () => {
 
   return (
     <div className="container">
+      <Loader loading={loading} />
       <Accordion title={"Add New Product into Inventory"}>
         <AdminAddProduct />
       </Accordion>
