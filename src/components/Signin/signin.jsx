@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signinActions } from "../../redux";
 import { Toast } from "../toast/toast";
+import Loading from "../Loader/loader";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -21,14 +22,12 @@ const Signin = () => {
       dispatch(signinActions.signinReset());
     } else if (token && loading === true) {
       dispatch(signinActions.checkAuth());
-      console.log("Signin ho gaya");
       Toast("success", "Sign in Success.");
     }
   }, [token, loading]);
 
   React.useEffect(() => {
     if (data && loading === false) {
-      console.log("Data aa gaya ", data);
       if (data.user_role === "admin") {
         navigate("/admin/dashboard");
       } else if (data.user_role === "user") {
@@ -39,6 +38,7 @@ const Signin = () => {
 
   return (
     <>
+      <Loading loading={loading} />
       <div className="border rounded rounded-5 p-5">
         <div className="mb-3">
           <label htmlFor="exampleInputUsername1" className="form-label">

@@ -2,6 +2,7 @@ import React from "react";
 import GameCard from "../../../components/GameCard/gameCard";
 import Table from "../../../components/Table/Table";
 import Form from "../../../components/Form/form";
+import Loader from "../../../components/Loader/loader";
 
 const TestComponents = () => {
   const data = [
